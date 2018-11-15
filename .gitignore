@@ -1,0 +1,16 @@
+/restApi/bin
+/restApi/Migrations
+/resApi/obj
+/restApi/Properties
+/restApi/appsettings.json
+
+/client/node_modules
+/client/src/environments
+
+/akka_socket_chat/.idea
+/akka_socket_chat/project
+/akka_socket_chat/sbt-dist
+/akka_socket_chat/sbt
+/akka_socket_chat/sbt.bat
+
+.idea

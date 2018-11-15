@@ -1,0 +1,11 @@
+.dropdown-toggle, .dropdown-item {
+    cursor: pointer;
+}
+.main-title {
+    font-weight: 700;
+}
+img {
+    max-height: 50px;
+    border: 2px solid white;
+    display: inline;
+}

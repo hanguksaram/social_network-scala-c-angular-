@@ -1,0 +1,14 @@
+/home/javaboy/netcoreProjs/01/API/bin/Debug/netcoreapp2.1/API.deps.json
+/home/javaboy/netcoreProjs/01/API/bin/Debug/netcoreapp2.1/API.runtimeconfig.json
+/home/javaboy/netcoreProjs/01/API/bin/Debug/netcoreapp2.1/API.runtimeconfig.dev.json
+/home/javaboy/netcoreProjs/01/API/bin/Debug/netcoreapp2.1/API.dll
+/home/javaboy/netcoreProjs/01/API/bin/Debug/netcoreapp2.1/API.pdb
+/home/javaboy/netcoreProjs/01/API/obj/Debug/netcoreapp2.1/API.csprojAssemblyReference.cache
+/home/javaboy/netcoreProjs/01/API/obj/Debug/netcoreapp2.1/API.csproj.CoreCompileInputs.cache
+/home/javaboy/netcoreProjs/01/API/obj/Debug/netcoreapp2.1/API.RazorAssemblyInfo.cache
+/home/javaboy/netcoreProjs/01/API/obj/Debug/netcoreapp2.1/API.RazorAssemblyInfo.cs
+/home/javaboy/netcoreProjs/01/API/obj/Debug/netcoreapp2.1/API.AssemblyInfoInputs.cache
+/home/javaboy/netcoreProjs/01/API/obj/Debug/netcoreapp2.1/API.AssemblyInfo.cs
+/home/javaboy/netcoreProjs/01/API/obj/Debug/netcoreapp2.1/API.RazorTargetAssemblyInfo.cache
+/home/javaboy/netcoreProjs/01/API/obj/Debug/netcoreapp2.1/API.dll
+/home/javaboy/netcoreProjs/01/API/obj/Debug/netcoreapp2.1/API.pdb

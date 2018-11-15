@@ -1,0 +1,12 @@
+<ul>
+<li class="d-flex justify-content-between align-items-center" *ngFor="let message of messages">
+  <div>{{message.messageSent | timeAgo}} <span>{{message.senderKnownAs}} </span></div>
+
+  <div>{{message.content}}</div>
+</li>
+</ul>
+<form #messageForm="ngForm" (ngSubmit)="sendMessage()">
+<input type="text" required name="content" [(ngModel)]="newMessage.content"/>
+<button [disabled]="!messageForm.valid" type="submit">Send message</button>
+</form>
+1
