@@ -1,6 +1,6 @@
-package com.example
+package com.social_chat
 
-import com.example.UserRegistryActor.ActionPerformed
+import com.social_chat.UserRegistryActor.ActionPerformed
 
 //#json-support
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport

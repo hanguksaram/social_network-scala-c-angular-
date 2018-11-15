@@ -1,41 +1,74 @@
-package com.example
+package com.social_chat
 
-import akka.actor.{ ActorRef, ActorSystem }
+import akka.actor.{ActorRef, ActorSystem}
 import akka.event.Logging
 
 import scala.concurrent.duration._
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.model.StatusCodes
-import akka.http.scaladsl.server.Route
+import akka.http.scaladsl.model.ws.{BinaryMessage, Message, TextMessage}
+import akka.http.scaladsl.server.{Directives, Route}
 import akka.http.scaladsl.server.directives.MethodDirectives.delete
 import akka.http.scaladsl.server.directives.MethodDirectives.get
 import akka.http.scaladsl.server.directives.MethodDirectives.post
 import akka.http.scaladsl.server.directives.RouteDirectives.complete
 import akka.http.scaladsl.server.directives.PathDirectives.path
+import io.circe._
+import io.circe.generic.auto._
+import io.circe.parser._
+import io.circe.syntax._
 
 import scala.concurrent.Future
-import com.example.UserRegistryActor._
 import akka.pattern.ask
+import akka.stream.ActorMaterializer
+import akka.stream.scaladsl.{Flow, Sink, Source}
 import akka.util.Timeout
+import com.social_chat.actors.User
+import com.social_chat.actors.UserRegistryActor.CreateUser
 
 //#user-routes-class
-trait UserRoutes extends JsonSupport {
+trait Routes extends JsonSupport {
   //#user-routes-class
 
   // we leave these abstract, since they will be provided by the App
   implicit def system: ActorSystem
 
-  lazy val log = Logging(system, classOf[UserRoutes])
+  lazy val log = Logging(system, classOf[Routes])
 
   // other dependencies that UserRoutes use
   def userRegistryActor: ActorRef
+  implicit val materializer: ActorMaterializer = ActorMaterializer()
 
   // Required by the `ask` (?) method below
   implicit lazy val timeout = Timeout(5.seconds) // usually we'd obtain the timeout from the system's configuration
 
   //#all-routes
   //#users-get-post
-  //#users-get-delete   
+  //#users-get-delete
+
+
+    def greeter: Flow[Message, Message, Any] =
+      Flow[Message].mapConcat {
+        case tm: TextMessage =>
+          decode[AnyRef] (tm.textStream.toString()) match {
+            case Left(failure) => println("bad json data" + failure)
+            case Right(value) => value match {
+              case User(id, name) => userRegistryActor ! CreateUser(User(id, name))
+            }
+          }
+          TextMessage(Source.single("Hello ") ++ tm.textStream ++ Source.single("!")) :: Nil
+        case bm: BinaryMessage =>
+          // ignore binary messages but drain content to avoid the stream being clogged
+          bm.dataStream.runWith(Sink.ignore)
+          Nil
+      }
+
+    val websocketRoute =
+      path("chat") {
+        handleWebSocketMessages(greeter)
+      }
+
+
   lazy val userRoutes: Route =
     pathPrefix("users") {
       concat(

@@ -1,16 +1,16 @@
-package com.example
+package com.social_chat
 
 //#quick-start-server
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
-
-import akka.actor.{ ActorRef, ActorSystem }
+import akka.actor.{ActorRef, ActorSystem}
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.server.Route
 import akka.stream.ActorMaterializer
+import com.social_chat.actors._
 
 //#main-class
-object QuickstartServer extends App with UserRoutes {
+object QuickstartServer extends App with Routes {
 
   // set up ActorSystem and other dependencies here
   //#main-class

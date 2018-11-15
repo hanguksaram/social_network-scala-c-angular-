@@ -1,4 +1,4 @@
-package com.example
+package com.social_chat
 
 //#user-routes-spec
 //#test-top
@@ -10,8 +10,8 @@ import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.{ Matchers, WordSpec }
 
 //#set-up
-class UserRoutesSpec extends WordSpec with Matchers with ScalaFutures with ScalatestRouteTest
-    with UserRoutes {
+class RoutesSpec extends WordSpec with Matchers with ScalaFutures with ScalatestRouteTest
+    with Routes {
   //#test-top
 
   // Here we need to implement all the abstract members of UserRoutes.
